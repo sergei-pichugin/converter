@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/common.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/login.css}"/>
+</head>
+<body>
+<div class="center">
+    <h2>Конвертер валют</h2>
+    <form method="POST" th:action="@{/login}">
+        <input type="text" placeholder="Логин" name="username"/>
+        <br/>
+        <input type="password" placeholder="Пароль" name="password"/>
+        <br/>
+        <button type="submit">Войти</button>
+    </form>
+</div>
+</body>
+</html>

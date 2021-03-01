@@ -1,0 +1,27 @@
+input {
+  width: 200px;
+  height: 30px;
+  padding: 4px;
+  margin: 12px;
+  display: inline-block;
+  border: 2px solid grey;
+  box-sizing: border-box;
+}
+
+button[type=submit] {
+  width: 200px;
+  height: 34px;
+  padding: 4px;
+  margin: 12px;
+  display: inline-block;
+  background-color: #D3D3D3;
+  border: 2px solid grey;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+button[type=submit]:hover {
+  background-color: #C0C0C0;
+}

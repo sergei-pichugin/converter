@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>История</title>
+    <link rel="stylesheet" th:href="@{/styles/common.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/history.css}"/>
+</head>
+<body>
+<a href="/main">На главную</a>
+<h2 class="center">История</h2>
+<div class="filter">
+    <form method="GET" th:action="@{/history}" th:object="${historyFilter}">
+        <input type="date" th:field="*{date}"/>
+        <select id="source_currency" name="source" th:field="*{sourceCode}">
+            <option th:each="option : ${shortOptions}" th:value="${option.key}" th:text="${option.value}">
+            </option>
+        </select>
+        <select id="target_currency" name="target" th:field="*{targetCode}">
+            <option th:each="option : ${shortOptions}" th:value="${option.key}" th:text="${option.value}">
+            </option>
+        </select>
+    </form>
+</div>
+<table>
+    <tr>
+        <th>Исходная валюта</th>
+        <th>Целевая валюта</th>
+        <th>Исходная сумма</th>
+        <th>Получаемая сумма</th>
+        <th>Дата</th>
+    </tr>
+    <th:block th:each="item : ${history}">
+        <tr>
+            <td th:text="${item.sourceCode}"></td>
+            <td th:text="${item.sourceAmount}"></td>
+            <td th:text="${item.targetCode}"></td>
+            <td th:text="${item.targetAmount}"></td>
+            <td th:text="${item.date}"></td>
+        </tr>
+    </th:block>
+</table>
+<div class="block-center">
+    <button type="submit" onclick="document.forms[0].submit();">Поиск</button>
+</div>
+</body>
+</html>
