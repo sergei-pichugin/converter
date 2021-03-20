@@ -32,7 +32,7 @@ public class ConverterApplication {
 			try {
 				List<Rate> rates = resourceLoaderService.getResourceData();
 				LocalDate lastDateInDb = rateRepository.findLastDate();
-				if (lastDateInDb == null || !lastDateInDb.equals(rates.get(0)getDate())) {
+				if (lastDateInDb == null || !lastDateInDb.equals(rates.get(0).getDate())) {
 					rateRepository.saveAll(rates);
 				}
 			} catch (IOException|DocumentException e) {
