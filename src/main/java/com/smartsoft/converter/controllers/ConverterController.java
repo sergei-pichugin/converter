@@ -50,6 +50,11 @@ public class ConverterController {
         }
         return options;
     }
+    
+    @GetMapping("/")
+    public String root(Model model) {
+        return "redirect:/main";
+    }
 
     @GetMapping("/main")
     public String mainForm(Model model) {
