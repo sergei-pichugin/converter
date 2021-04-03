@@ -10,3 +10,20 @@ body {
 .clearfix {
   clear: both;
 }
+
+button[type=submit] {
+  padding: 4px;
+  margin: 12px;
+  display: inline-block;
+  background-color: #E0DCDC;
+  border: 2px solid grey;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: inset 0 -3px #AEAEAE;
+}
+
+button[type=submit]:hover {
+  background-color: #C0C0C0;
+}
