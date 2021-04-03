@@ -1,11 +1,25 @@
+## Requirements
+- Java 15
+- Maven
+- PostgresSQL 13
+
+> Change <...> to setting from application.properties, <version> to version from pom.xml
+
 ## Create database in postgresql
-create database currency;
-create user curradmin with encrypted password 'd2s80+H';
-grant all privileges on database currency to curradmin;
+`create database currency;`
+`create user <spring.datasource.username> with encrypted password '<spring.datasource.password>';`
+`grant all privileges on database currency to curradmin;`
+
+## Run by spring boot from 'converter' folder
+`mvn spring-boot:run`
+
+## Run by java from 'converter' folder
+`java clean package`
+`java -jar target/<version>.jar`
 
 ## In the browser address bar
-localhost:8080/main
+`localhost:<server.port>`
 
 ## Login and password
-admin
-1572
+`<spring.security.user.name>`
+`<spring.security.user.password>`
