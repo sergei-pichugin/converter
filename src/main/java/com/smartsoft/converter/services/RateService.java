@@ -31,6 +31,7 @@ public class RateService {
         }
         List<Rate> rates = resourceLoaderService.getResourceData();
         if (!lastDateInDb.equals(rates.get(0).getDate())) {
+            System.out.println("Trying to save last rates from site");
             rateRepository.saveAll(rates);
         }
         return rates.stream().filter(r -> code.equals(r.getCharCode())).collect(Collectors.toList()).get(0);

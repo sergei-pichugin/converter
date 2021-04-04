@@ -21,7 +21,7 @@ public class Conversion {
     private BigDecimal targetAmount;
     private LocalDateTime convertedAt;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rate_id")
     private Rate rate;
 
