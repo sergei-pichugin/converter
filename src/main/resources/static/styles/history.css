@@ -28,4 +28,19 @@ table {
 table, th, td {
   border: 2px solid grey;
   padding: 8px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+th {
+  background-color: #b9b9b9;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+td {
+  background-color: #e8e8e8;
+  padding-top: 13px;
+  padding-bottom: 13px;
 }
