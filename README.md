@@ -1,5 +1,5 @@
 ## Requirements
-- Java 15
+- Java 16
 - Maven
 - PostgresSQL 13
 
