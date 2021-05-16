@@ -14,7 +14,7 @@
 `mvn spring-boot:run`
 
 ## Run by java from 'converter' folder
-`java clean package`  
+`mvn clean package`  
 `java -jar target/<version>.jar`
 
 ## In the browser address bar
