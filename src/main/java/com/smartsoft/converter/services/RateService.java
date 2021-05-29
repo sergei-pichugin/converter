@@ -2,6 +2,7 @@ package com.smartsoft.converter.services;
 
 import com.smartsoft.converter.entities.Rate;
 import com.smartsoft.converter.repositories.RateRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class RateService {
 
     @Autowired
@@ -31,7 +33,7 @@ public class RateService {
         }
         List<Rate> rates = resourceLoaderService.getResourceData();
         if (!lastDateInDb.equals(rates.get(0).getDate())) {
-            System.out.println("Trying to save last rates from site");
+            log.info("Saving last rates from site");
             rateRepository.saveAll(rates);
         }
         return rates.stream().filter(r -> code.equals(r.getCharCode())).collect(Collectors.toList()).get(0);

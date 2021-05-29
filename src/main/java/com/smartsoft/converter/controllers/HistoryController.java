@@ -1,29 +1,26 @@
 package com.smartsoft.converter.controllers;
 
-import com.smartsoft.converter.dto.ConversionDto;
 import com.smartsoft.converter.dto.HistoryFilter;
 import com.smartsoft.converter.dto.HistoryItem;
-import com.smartsoft.converter.repositories.ConversionRepository;
 import com.smartsoft.converter.services.HistoryService;
 import com.smartsoft.converter.services.ResourceLoaderService;
+import lombok.extern.slf4j.Slf4j;
 import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 @Controller
+@Slf4j
 @SessionAttributes({"historyFilter", "shortOptions"})
 public class HistoryController {
 
@@ -40,9 +37,9 @@ public class HistoryController {
             options = resourceLoaderService.getShortOptions();
             options.put("RUB", "RUB");   // рубль не входит в получаемый список
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Short options input/output problem: {}", e);
         } catch (DocumentException e) {
-            e.printStackTrace();
+            log.error("Short options document problem: {}", e);
         }
         return options;
     }

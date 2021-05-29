@@ -1,9 +1,9 @@
 package com.smartsoft.converter.services;
 
 import com.smartsoft.converter.entities.Rate;
+import lombok.extern.slf4j.Slf4j;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
-import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 import org.springframework.context.ResourceLoaderAware;
@@ -11,7 +11,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service("resourceLoaderService")
+@Slf4j
 public class ResourceLoaderService implements ResourceLoaderAware {
     private ResourceLoader resourceLoader;
 
@@ -36,8 +38,8 @@ public class ResourceLoaderService implements ResourceLoaderAware {
         InputStream in = resource.getInputStream();
         SAXReader reader = new SAXReader();
         Document document = reader.read(in);
-        System.out.println("document read");
-        System.out.println(document.getRootElement().getName() + " for " +
+        log.info("document read");
+        log.info(document.getRootElement().getName() + " for " +
                 document.getRootElement().valueOf("@Date"));
 
         List<Node> nodes = document.selectNodes("/ValCurs/Valute" );

@@ -1,10 +1,10 @@
 package com.smartsoft.converter.controllers;
 
 import com.smartsoft.converter.dto.ConversionDto;
-import com.smartsoft.converter.exceptions.ConversionDataException;
 import com.smartsoft.converter.services.ConverterService;
 import com.smartsoft.converter.services.RateService;
 import com.smartsoft.converter.services.ResourceLoaderService;
+import lombok.extern.slf4j.Slf4j;
 import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import java.io.IOException;
 import java.util.Map;
 
 @Controller
+@Slf4j
 @SessionAttributes({"conversion", "options"})
 public class ConverterController {
 
@@ -63,16 +62,16 @@ public class ConverterController {
 
     @PostMapping("/convert")
     public String convert(ConversionDto conversion, Model model) {    //conversion is from the view
-        System.out.println(conversion);
+        log.debug("Converting: {}", conversion);
         if (conversion == null) return "redirect:/main";
         try {
             converterService.convert(conversion);
         } catch (Exception e) {
             model.addAttribute("message", e.getMessage());
-            e.printStackTrace();
+            log.error("Exception when converting: {}", e);
             return "error";
         }
-        System.out.println(conversion);
+        log.debug("Conversion done: {}", conversion);
         // now view conversion goes to model
         ConversionDto modelConversion = (ConversionDto)model.getAttribute("conversion");
         modelConversion.setSourceCode(conversion.getSourceCode());
