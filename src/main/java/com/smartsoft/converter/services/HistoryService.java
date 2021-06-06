@@ -26,11 +26,10 @@ public class HistoryService {
             conversions = findByCurrency(historyFilter);
         }
         List<HistoryItem> history = new LinkedList<>();
-        conversions.forEach(c -> {
-            history.add(new HistoryItem(c.getSourceCurrency(), c.getSourceAmount().toString(),
-                    c.getTargetCurrency(), c.getTargetAmount().toString(),
-                    c.getConvertedAt().toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
-        });
+        conversions.forEach(c -> history.add(
+                new HistoryItem(c.getSourceCode(), c.getSourceName(), c.getSourceAmount().toString(),
+                c.getTargetCode(), c.getTargetName(), c.getTargetAmount().toString(),
+                c.getConvertedAt().toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")))));
         return history;
     }
 
@@ -39,14 +38,14 @@ public class HistoryService {
         if ("RUB".equals(historyFilter.getSourceCode()) ||
                 "RUB".equals(historyFilter.getTargetCode()) ||
                 historyFilter.getSourceCode().equals(historyFilter.getTargetCode())) {
-            return conversionRepository.findBySourceCurrencyAndTargetCurrencyAndConvertedAtBetween(
+            return conversionRepository.findBySourceCodeAndTargetCodeAndConvertedAtBetween(
                     historyFilter.getSourceCode(), historyFilter.getTargetCode(),
                     date.atTime(0, 0, 0), date.atTime(23, 59, 59));
         }
-        List<Conversion> conversions = conversionRepository.findBySourceCurrencyAndTargetCurrencyAndConvertedAtBetween(
+        List<Conversion> conversions = conversionRepository.findBySourceCodeAndTargetCodeAndConvertedAtBetween(
                 historyFilter.getSourceCode(), "RUB",
                 date.atTime(0, 0, 0), date.atTime(23, 59, 59));
-        List<Conversion> fromRub = conversionRepository.findBySourceCurrencyAndTargetCurrencyAndConvertedAtBetween(
+        List<Conversion> fromRub = conversionRepository.findBySourceCodeAndTargetCodeAndConvertedAtBetween(
                 "RUB", historyFilter.getTargetCode(),
                 date.atTime(0, 0, 0), date.atTime(23, 59, 59));
 
@@ -58,12 +57,12 @@ public class HistoryService {
         if ("RUB".equals(historyFilter.getSourceCode()) ||
                 "RUB".equals(historyFilter.getTargetCode()) ||
                 historyFilter.getSourceCode().equals(historyFilter.getTargetCode())) {
-            return conversionRepository.findBySourceCurrencyAndTargetCurrency(
+            return conversionRepository.findBySourceCodeAndTargetCode(
                     historyFilter.getSourceCode(), historyFilter.getTargetCode());
         }
-        List<Conversion> conversions = conversionRepository.findBySourceCurrencyAndTargetCurrency(
+        List<Conversion> conversions = conversionRepository.findBySourceCodeAndTargetCode(
                 historyFilter.getSourceCode(), "RUB");
-        List<Conversion> fromRub = conversionRepository.findBySourceCurrencyAndTargetCurrency(
+        List<Conversion> fromRub = conversionRepository.findBySourceCodeAndTargetCode(
                 "RUB", historyFilter.getTargetCode());
 
         conversions.addAll(fromRub);

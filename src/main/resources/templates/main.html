@@ -43,7 +43,8 @@
         <div class="box-container">
             <div class="box">
                 <select id="source_currency" name="source" th:field="*{sourceCode}">
-                    <option th:each="option : ${options}" th:value="${option.key}" th:text="${option.value}">
+                    <option th:each="option : ${options}" th:value="${option.key}"
+                            th:text="${option.key} + ' (' + ${option.value} + ')'">
                     </option>
                 </select>
                 </br>
@@ -52,7 +53,8 @@
 
             <div class="box">
                 <select id="target_currency" name="target" th:field="*{targetCode}">
-                    <option th:each="option : ${options}" th:value="${option.key}" th:text="${option.value}">
+                    <option th:each="option : ${options}" th:value="${option.key}"
+                            th:text="${option.key} + ' (' + ${option.value} + ')'">
                     </option>
                 </select>
                 <br/>

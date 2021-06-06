@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,7 +45,7 @@ public class ConverterServiceTest {
     @Test
     void convert_notAllDataThrowsExceptionTest() {
         Assertions.assertThrows(ConversionDataException.class, () -> {
-            converterService.convert(new ConversionDto());
+            converterService.convert(new ConversionDto(), Map.of());
         });
     }
 
@@ -52,7 +53,8 @@ public class ConverterServiceTest {
     void convert_amountsEqualForEqualCodes() throws ConversionDataException, IOException, DocumentException {
         ConversionDto conversionDto = new ConversionDto("USD", "20",
                 "USD", null);
-        converterService.convert(conversionDto);
+        Map<String, String> options = Map.of("USD", "dollars");
+        converterService.convert(conversionDto, options);
         assertEquals("20", conversionDto.getTargetAmount());
     }
 

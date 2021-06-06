@@ -15,8 +15,10 @@ ON rate(date DESC);
 
 CREATE TABLE IF NOT EXISTS conversion (
     id               bigint GENERATED ALWAYS AS IDENTITY,
-    source_currency  varchar(50) NOT NULL,
-    target_currency  varchar(50) NOT NULL,
+    source_code      char(3) NOT NULL,
+    source_name      varchar(50) NOT NULL,
+    target_code      char(3) NOT NULL,
+    target_name      varchar(50) NOT NULL,
     source_amount    numeric(15,4) NOT NULL,
     target_amount    numeric(15,4) NOT NULL,
     rate_id          bigint,

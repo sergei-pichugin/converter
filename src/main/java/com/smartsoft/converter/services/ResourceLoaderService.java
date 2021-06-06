@@ -73,8 +73,7 @@ public class ResourceLoaderService implements ResourceLoaderAware {
 
         for (Node node : nodes) {
             options.put(node.selectSingleNode("CharCode").getText(),
-                    node.selectSingleNode("CharCode").getText() + " (" +
-                    node.selectSingleNode("Name").getText() + ")");
+                    node.selectSingleNode("Name").getText());
         }
         return options;
     }

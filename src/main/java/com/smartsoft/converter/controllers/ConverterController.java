@@ -41,7 +41,7 @@ public class ConverterController {
         Map<String, String> options = null;
         try {
             options = resourceLoaderService.getOptions();
-            options.put("RUB", "RUB (Российский рубль)");   // рубль не входит в получаемый список
+            options.put("RUB", "Российский рубль");   // рубль не входит в получаемый список
         } catch (IOException e) {
             e.printStackTrace();
         } catch (DocumentException e) {
@@ -65,7 +65,7 @@ public class ConverterController {
         log.debug("Converting: {}", conversion);
         if (conversion == null) return "redirect:/main";
         try {
-            converterService.convert(conversion);
+            converterService.convert(conversion, options());
         } catch (Exception e) {
             model.addAttribute("message", e.getMessage());
             log.error("Exception when converting: {}", e);

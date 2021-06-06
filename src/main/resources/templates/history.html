@@ -59,9 +59,9 @@
     </tr>
     <th:block th:each="item : ${history}">
         <tr>
-            <td th:text="${item.sourceCode}"></td>
+            <td th:text="${item.sourceCode} + ' (' + ${item.sourceName} + ')'"></td>
             <td th:text="${item.sourceAmount}"></td>
-            <td th:text="${item.targetCode}"></td>
+            <td th:text="${item.targetCode} + ' (' + ${item.targetName} + ')'"></td>
             <td th:text="${item.targetAmount}"></td>
             <td th:text="${item.date}"></td>
         </tr>

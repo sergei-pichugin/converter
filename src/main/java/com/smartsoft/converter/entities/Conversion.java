@@ -15,9 +15,11 @@ public class Conversion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String sourceCurrency;
+    private String sourceCode;
+    private String sourceName;
     private BigDecimal sourceAmount;
-    private String targetCurrency;
+    private String targetCode;
+    private String targetName;
     private BigDecimal targetAmount;
     private LocalDateTime convertedAt;
 
@@ -26,12 +28,14 @@ public class Conversion {
     private Rate rate;
 
 
-    public Conversion(String sourceCurrency, BigDecimal sourceAmount,
-                      String targetCurrency, BigDecimal targetAmount,
+    public Conversion(String sourceCode, String sourceName, BigDecimal sourceAmount,
+                      String targetCode, String targetName, BigDecimal targetAmount,
                       LocalDateTime convertedAt, Rate rate) {
-        this.sourceCurrency = sourceCurrency;
+        this.sourceCode = sourceCode;
+        this.sourceName = sourceName;
         this.sourceAmount = sourceAmount;
-        this.targetCurrency = targetCurrency;
+        this.targetCode = targetCode;
+        this.targetName = targetName;
         this.targetAmount = targetAmount;
         this.convertedAt = convertedAt;
         this.rate = rate;

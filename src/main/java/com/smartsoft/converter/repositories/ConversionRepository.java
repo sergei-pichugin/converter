@@ -10,8 +10,8 @@ import java.util.List;
 @Repository
 public interface ConversionRepository extends JpaRepository<Conversion, Long> {
 
-    List<Conversion> findBySourceCurrencyAndTargetCurrency(String sourceCode, String targetCode);
+    List<Conversion> findBySourceCodeAndTargetCode(String sourceCode, String targetCode);
 
-    List<Conversion> findBySourceCurrencyAndTargetCurrencyAndConvertedAtBetween(
+    List<Conversion> findBySourceCodeAndTargetCodeAndConvertedAtBetween(
             String sourceCode, String targetCode, LocalDateTime start, LocalDateTime end);
 }
