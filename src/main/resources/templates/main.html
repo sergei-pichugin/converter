@@ -41,17 +41,17 @@
 
     <form method="POST" th:action="@{/convert}" th:object="${conversion}">
         <div class="box-container">
-            <div class="box">
+            <div class="box center">
                 <select id="source_currency" name="source" th:field="*{sourceCode}">
                     <option th:each="option : ${options}" th:value="${option.key}"
                             th:text="${option.key} + ' (' + ${option.value} + ')'">
                     </option>
                 </select>
                 </br>
-                <input type="text" th:field="*{sourceAmount}"/>
+                <input type="text" th:field="*{sourceAmount}" required/>
             </div>
 
-            <div class="box">
+            <div class="box center">
                 <select id="target_currency" name="target" th:field="*{targetCode}">
                     <option th:each="option : ${options}" th:value="${option.key}"
                             th:text="${option.key} + ' (' + ${option.value} + ')'">

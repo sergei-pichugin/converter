@@ -38,7 +38,7 @@
 <h2 class="center">История</h2>
 <div class="filter">
     <form method="GET" th:action="@{/history}" th:object="${historyFilter}">
-        <input type="date" th:field="*{date}"/>
+        <input type="date" th:field="*{date}" required/>
         <select id="source_currency" name="source" th:field="*{sourceCode}">
             <option th:each="option : ${shortOptions}" th:value="${option.key}" th:text="${option.value}">
             </option>

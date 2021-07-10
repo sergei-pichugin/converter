@@ -11,13 +11,7 @@ input, select {
 select {
   width: 200px;
   height: 32px;
-  padding: 2px 7px;
-  border:0px;
-  outline:0px;
-  background: url(../images/select.PNG) 0 0 no-repeat;
-  -moz-appearance:none;
-  -webkit-appearance: none;
-  appearance:none;
+  padding: 2px;
 }
 
 button[type=submit] {
@@ -30,6 +24,7 @@ button[type=submit] {
   margin-left: auto;
   margin-right: auto;
   width: 200px;
+
 }
 
 table {

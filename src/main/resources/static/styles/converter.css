@@ -4,11 +4,14 @@
   min-width: 300px;
   max-width: 600px;
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .box {
-  float: left;
-  width: 250px;
+  min-width: 250px;
+  flex-grow: 1;
   padding: 20px;
 }
 
@@ -16,7 +19,6 @@ input, select {
   width: 200px;
   height: 32px;
   padding: 4px;
-  margin: 12px;
   display: inline-block;
   border: 2px solid grey;
   box-sizing: border-box;
@@ -25,13 +27,8 @@ input, select {
 select {
   width: 200px;
   height: 32px;
-  padding: 2px 20px 2px 2px;
-  border:0px;
-  outline:0px;
-  background: url(/images/select.PNG) 0 0 no-repeat;
-  -moz-appearance:none;
-  -webkit-appearance: none;
-  appearance:none;
+  padding: 2px;
+  margin-bottom: 20px;
 }
 
 button[type=submit] {
