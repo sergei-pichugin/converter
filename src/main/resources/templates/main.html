@@ -42,21 +42,25 @@
     <form method="POST" th:action="@{/convert}" th:object="${conversion}">
         <div class="box-container">
             <div class="box center">
-                <select id="source_currency" name="source" th:field="*{sourceCode}">
-                    <option th:each="option : ${options}" th:value="${option.key}"
-                            th:text="${option.key} + ' (' + ${option.value} + ')'">
-                    </option>
-                </select>
+                <div class="selectParent">
+                    <select class="selectChild" id="source_currency" name="source" th:field="*{sourceCode}">
+                        <option th:each="option : ${options}" th:value="${option.key}"
+                                th:text="${option.key} + ' (' + ${option.value} + ')'">
+                        </option>
+                    </select>
+                </div>
                 </br>
                 <input type="text" th:field="*{sourceAmount}" required/>
             </div>
 
             <div class="box center">
-                <select id="target_currency" name="target" th:field="*{targetCode}">
-                    <option th:each="option : ${options}" th:value="${option.key}"
-                            th:text="${option.key} + ' (' + ${option.value} + ')'">
-                    </option>
-                </select>
+                <div class="selectParent">
+                    <select class="selectChild" id="target_currency" name="target" th:field="*{targetCode}">
+                        <option th:each="option : ${options}" th:value="${option.key}"
+                                th:text="${option.key} + ' (' + ${option.value} + ')'">
+                        </option>
+                    </select>
+                </div>
                 <br/>
                 <input type="text" th:field="*{targetAmount}"/>
             </div>
@@ -66,5 +70,6 @@
         <button type="submit">Конвертировать</button>
     </form>
 </div>
+
 </body>
 </html>

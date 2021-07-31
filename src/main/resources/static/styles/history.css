@@ -1,17 +1,45 @@
-input, select {
+.box-container {
+  margin-left: 0px;
+  margin-right: 0px;
+  min-width: 300px;
+  max-width: 620px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.box {
+  flex-grow: 1;
+  padding: 8px;
+}
+
+input {
   width: 160px;
-  height: 30px;
+  height: 32px;
   padding: 4px;
-  margin: 12px;
   display: inline-block;
   border: 2px solid grey;
   box-sizing: border-box;
 }
 
-select {
-  width: 200px;
-  height: 32px;
-  padding: 2px;
+.selectParent{
+    width: 200px;
+    height: 32px;
+    overflow: hidden;
+    background-color: white;
+    border: 2px solid grey;
+    display: inline-block;
+}
+
+.selectChild{
+    width: 198px;
+    height: 28px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background: transparent url("../images/select.png") no-repeat right center;
 }
 
 button[type=submit] {

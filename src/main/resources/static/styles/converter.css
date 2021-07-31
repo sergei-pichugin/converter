@@ -15,7 +15,7 @@
   padding: 20px;
 }
 
-input, select {
+input {
   width: 200px;
   height: 32px;
   padding: 4px;
@@ -24,14 +24,28 @@ input, select {
   box-sizing: border-box;
 }
 
-select {
-  width: 200px;
-  height: 32px;
-  padding: 2px;
-  margin-bottom: 20px;
-}
-
 button[type=submit] {
   width: 198px;
   height: 38px;
+}
+
+.selectParent{
+    width: 200px;
+    height: 32px;
+    overflow: hidden;
+    background-color: white;
+    border: 2px solid grey;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.selectChild{
+    width: 198px;
+    height: 28px;
+    padding-right: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background: transparent url("../images/select.png") no-repeat right center;
 }
