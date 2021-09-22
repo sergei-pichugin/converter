@@ -3,8 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src = "/jquery/i18n/datepicker-ru.js"></script>
+    <script>
+    jQuery(document).ready(function(){
+        $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
+        $( "#datepicker" ).datepicker({
+            "dateFormat": "dd.mm.yy"
+        });
+    } );
+    </script>
     <title>История</title>
     <link rel="stylesheet" th:href="@{/styles/common.css}"/>
     <link rel="stylesheet" th:href="@{/styles/history.css}"/>
@@ -40,7 +51,9 @@
     <form method="GET" th:action="@{/history}" th:object="${historyFilter}">
         <div class="box-container">
             <div class="box">
-                <input type="date" th:field="*{date}" required/>
+                <div class="inputParent">
+                    <input class="inputChild" id="datepicker" type="text" th:field="*{date}" required/>
+                </div>
             </div>
             <div class="box">
                 <div class="selectParent">

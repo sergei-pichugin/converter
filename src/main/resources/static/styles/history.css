@@ -14,13 +14,23 @@
   padding: 8px;
 }
 
-input {
-  width: 160px;
-  height: 32px;
-  padding: 4px;
-  display: inline-block;
-  border: 2px solid grey;
-  box-sizing: border-box;
+.inputParent{
+    width: 160px;
+    height: 32px;
+    overflow: hidden;
+    background-color: white;
+    border: 2px solid grey;
+    display: inline-block;
+}
+
+.inputChild{
+    width: 158px;
+    height: 28px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background: transparent url("../images/date.png") no-repeat right center;
 }
 
 .selectParent{

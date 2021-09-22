@@ -34,7 +34,7 @@ public class HistoryService {
     }
 
     private List<Conversion> findByCurrencyAndDate(HistoryFilter historyFilter) {
-        LocalDate date = LocalDate.parse(historyFilter.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate date = historyFilter.getDate();
         if ("RUB".equals(historyFilter.getSourceCode()) ||
                 "RUB".equals(historyFilter.getTargetCode()) ||
                 historyFilter.getSourceCode().equals(historyFilter.getTargetCode())) {

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -46,13 +45,13 @@ public class HistoryController {
 
     @ModelAttribute(name = "historyFilter")
     public HistoryFilter filter() {
-        LocalDate date = LocalDate.now();
-        return new HistoryFilter(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                "USD", "RUB");
+        return new HistoryFilter(LocalDate.now(), "USD", "RUB");
     }
 
     @GetMapping("/history")
-    public String history(HistoryFilter historyFilter, Model model) {
+    public String history(
+            HistoryFilter historyFilter,
+            Model model) {
         List<HistoryItem> conversions = historyService.findByFilter(historyFilter);
         model.addAttribute("history", conversions);
 
