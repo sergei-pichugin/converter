@@ -22,6 +22,7 @@ public class Conversion {
     private String targetName;
     private BigDecimal targetAmount;
     private LocalDateTime convertedAt;
+    private String startEnd;        // useful for cases: usd>eur = usd>ru + ru>eur - and filter by usd>eur
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rate_id")
@@ -30,7 +31,7 @@ public class Conversion {
 
     public Conversion(String sourceCode, String sourceName, BigDecimal sourceAmount,
                       String targetCode, String targetName, BigDecimal targetAmount,
-                      LocalDateTime convertedAt, Rate rate) {
+                      LocalDateTime convertedAt, Rate rate, String startEnd) {
         this.sourceCode = sourceCode;
         this.sourceName = sourceName;
         this.sourceAmount = sourceAmount;
@@ -39,5 +40,6 @@ public class Conversion {
         this.targetAmount = targetAmount;
         this.convertedAt = convertedAt;
         this.rate = rate;
+        this.startEnd = startEnd;
     }
 }

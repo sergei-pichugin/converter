@@ -30,6 +30,7 @@
     -moz-appearance: none;
     appearance: none;
     border: none;
+    cursor: default;
     background: transparent url("../images/date.png") no-repeat right center;
 }
 

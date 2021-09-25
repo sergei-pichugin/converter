@@ -33,29 +33,35 @@ public class ConverterService {
     public boolean convert(ConversionDto conversionDto, Map<String, String> options)
             throws ConversionDataException, IOException, DocumentException {
         validate(conversionDto);
+        String startEnd = conversionDto.getSourceCode() + "_" + conversionDto.getTargetCode();
+        LocalDateTime now = LocalDateTime.now();
 
         if (conversionDto.getSourceCode().equals(conversionDto.getTargetCode())) {
             BigDecimal result = convertToTheSameCode(conversionDto.getSourceCode(), conversionDto.getSourceAmount(),
-                    options);
+                    options, startEnd, now);
             conversionDto.setTargetAmount(result.toString());
             return true;
         } else if ("RUB".equals(conversionDto.getSourceCode())) {
-            BigDecimal result = convertFromRub(conversionDto.getSourceAmount(), conversionDto.getTargetCode(), options);
+            BigDecimal result = convertFromRub(conversionDto.getSourceAmount(), conversionDto.getTargetCode(), options,
+                    startEnd, now);
             conversionDto.setTargetAmount(result.toString());
             return true;
         } else if ("RUB".equals(conversionDto.getTargetCode())) {
-            BigDecimal result = convertToRub(conversionDto.getSourceCode(), conversionDto.getSourceAmount(), options);
+            BigDecimal result = convertToRub(conversionDto.getSourceCode(), conversionDto.getSourceAmount(), options,
+                    startEnd, now);
             conversionDto.setTargetAmount(result.toString());
             return true;
         } else {
-            BigDecimal rub = convertToRub(conversionDto.getSourceCode(), conversionDto.getSourceAmount(), options);
-            BigDecimal result = convertFromRub(rub.toString(), conversionDto.getTargetCode(), options);
+            BigDecimal rub = convertToRub(conversionDto.getSourceCode(), conversionDto.getSourceAmount(), options,
+                    startEnd, now);
+            BigDecimal result = convertFromRub(rub.toString(), conversionDto.getTargetCode(), options, startEnd, now);
             conversionDto.setTargetAmount(result.toString());
             return true;
         }
     }
 
-    private BigDecimal convertToRub(String sourceCode, String sourceAmount, Map<String, String> options) throws IOException, DocumentException {
+    private BigDecimal convertToRub(String sourceCode, String sourceAmount, Map<String, String> options,
+                                    String startEnd, LocalDateTime convertedAt) throws IOException, DocumentException {
         Rate rate = rateService.getLastRate(sourceCode);
         BigDecimal fromCash = new BigDecimal(sourceAmount);
         BigDecimal result = fromCash.multiply(rate.getValue()).multiply(BigDecimal.valueOf(rate.getNominal()));
@@ -65,12 +71,15 @@ public class ConverterService {
                 "RUB",
                 options.get("RUB"),
                 result,
-                LocalDateTime.now(), rate);
+                convertedAt,
+                rate,
+                startEnd);
         conversionRepository.save(conversion);
         return result;
     }
 
-    private BigDecimal convertFromRub(String sourceAmount, String targetCode, Map<String, String> options) throws IOException, DocumentException {
+    private BigDecimal convertFromRub(String sourceAmount, String targetCode, Map<String, String> options,
+                                      String startEnd, LocalDateTime convertedAt) throws IOException, DocumentException {
         Rate rate = rateService.getLastRate(targetCode);
         BigDecimal rub = new BigDecimal(sourceAmount);
         BigDecimal result =  rub
@@ -82,19 +91,24 @@ public class ConverterService {
                 targetCode,
                 options.get(targetCode),
                 result,
-                LocalDateTime.now(), rate);
+                convertedAt,
+                rate,
+                startEnd);
         conversionRepository.save(conversion);
         return result;
     }
 
-    private BigDecimal convertToTheSameCode(String sourceCode, String sourceAmount, Map<String, String> options) {
+    private BigDecimal convertToTheSameCode(String sourceCode, String sourceAmount, Map<String, String> options,
+                                            String startEnd, LocalDateTime convertedAt) {
         Conversion conversion = new Conversion(sourceCode,
                 options.get(sourceCode),
                 new BigDecimal(sourceAmount),
                 sourceCode,
                 options.get(sourceCode),
                 new BigDecimal(sourceAmount),
-                LocalDateTime.now(), null);
+                convertedAt,
+                null,
+                startEnd);
         conversionRepository.save(conversion);
         return conversion.getTargetAmount();
     }
