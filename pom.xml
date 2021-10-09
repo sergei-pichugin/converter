@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.smartsoft</groupId>
 	<artifactId>converter</artifactId>
-	<version>1.2.4</version>
+	<version>1.2.5</version>
 	<name>converter</name>
 	<description>Converter project for Spring Boot</description>
 
@@ -66,6 +66,15 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.200</version>
+			<scope>compile</scope>
+		</dependency>
+
 
 		<!-- Flexible XML framework for Java -->
 		<dependency>

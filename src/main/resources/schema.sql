@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS conversion (
     source_amount    numeric(15,4) NOT NULL,
     target_amount    numeric(15,4) NOT NULL,
     rate_id          bigint,
-    converted_at     timestamptz NOT NULL,
+    converted_at     timestamp NOT NULL,
     start_end        char(7),
     PRIMARY KEY(id),
     CONSTRAINT fk_rate
