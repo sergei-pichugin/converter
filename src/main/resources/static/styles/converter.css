@@ -1,0 +1,51 @@
+.box-container {
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 300px;
+  max-width: 600px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.box {
+  min-width: 250px;
+  flex-grow: 1;
+  padding: 20px;
+}
+
+input {
+  width: 200px;
+  height: 32px;
+  padding: 4px;
+  display: inline-block;
+  border: 2px solid grey;
+  box-sizing: border-box;
+}
+
+button[type=submit] {
+  width: 198px;
+  height: 38px;
+}
+
+.selectParent{
+    width: 200px;
+    height: 32px;
+    overflow: hidden;
+    background-color: white;
+    border: 2px solid grey;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.selectChild{
+    width: 198px;
+    height: 28px;
+    padding-right: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background: transparent url("../images/select.png") no-repeat right center;
+}
