@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Авторизация</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/common.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/login.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Converter</a>
+        </div>
+    </div>
+</nav>
+<div class="center">
+    <h2>Конвертер валют</h2>
+    <form method="POST" th:action="@{/login}">
+        <input type="text" placeholder="Логин" name="username"/>
+        <br/>
+        <input type="password" placeholder="Пароль" name="password"/>
+        <br/>
+        <button type="submit">Войти</button>
+    </form>
+</div>
+</body>
+</html>

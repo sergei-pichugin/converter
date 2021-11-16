@@ -1,0 +1,14 @@
+input {
+  width: 200px;
+  height: 32px;
+  padding: 4px;
+  margin: 12px;
+  display: inline-block;
+  border: 2px solid grey;
+  box-sizing: border-box;
+}
+
+button[type=submit] {
+  width: 198px;
+  height: 38px;
+}
