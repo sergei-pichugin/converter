@@ -23,3 +23,8 @@
 ## Login and password
 `<spring.security.user.name>`  
 `<spring.security.user.password>`
+
+## demo-version
+https://easy-converter.herokuapp.com
+
+login-admin, password-1573
