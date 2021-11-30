@@ -1,7 +1,7 @@
 ## Requirements
 - Java 16
 - Maven
-- PostgresSQL 13
+- PostgresSQL
 
 > Change <...> to setting from application.properties, <version> to version from pom.xml
 
